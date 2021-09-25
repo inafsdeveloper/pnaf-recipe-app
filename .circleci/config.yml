@@ -8,20 +8,28 @@ jobs:
     working_directory: ~/pnaf-recipe-app
     # specify the version you desire here
     docker:
-      - image: circleci/openjdk:11-jdk
+      - image: cimg/openjdk:11.0
     steps:
+      # Checkout the code as the first step.
       - checkout
-      # Download and cache dependencies
+        # Download and cache dependencies
       - restore_cache:
           key: pnaf-recipe-app-{‌{ checksum "pom.xml" }}
-      - run: mvn install -DskipTests
-      - run: mvn dependency:go-offline
+      # Use mvn clean and package as the standard maven build phase
+      - run:
+          name: Install
+          command: mvn install -DskipTests
+      - run:
+          name: Build Dependencies
+          command: mvn dependency:go-offline
       - save_cache:
           paths:
             - ~/.m2
           key: pnaf-recipe-app-{‌{ checksum "pom.xml" }}
-      # run tests!
-      - run: mvn package
+      # Then run your tests!
+      - run:
+          name: Test
+          command: mvn verify
       - store_test_results:
           path: target/surefire-reports
       - store_artifacts:
