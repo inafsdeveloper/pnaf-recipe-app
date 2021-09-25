@@ -2,35 +2,33 @@
 #
 # Check https://circleci.com/docs/2.0/language-java/ for more details
 #
-version: 2
+version: 2.0
 jobs:
   build:
-    working_directory: ~/pnaf-recipe-app
     # specify the version you desire here
     docker:
-      - image: cimg/openjdk:11.0
+      - image: circleci/openjdk:11-jdk
+    working_directory: ~/repo
+    environment:
+      - MAVEN_OPTS: -Xmx3200m
     steps:
-      # Checkout the code as the first step.
       - checkout
-        # Download and cache dependencies
+      # Download and cache dependencies
       - restore_cache:
-          key: pnaf-recipe-app-{‌{ checksum "pom.xml" }}
-      # Use mvn clean and package as the standard maven build phase
-      - run:
-          name: Install
-          command: mvn install -DskipTests
-      - run:
-          name: Build Dependencies
-          command: mvn dependency:go-offline
+          key:
+            - v1-dependencies-{‌{ checksum "pom.xml" }}
+            - v1-dependencies
+      - run: mvn dependency:go-offline
       - save_cache:
           paths:
             - ~/.m2
-          key: pnaf-recipe-app-{‌{ checksum "pom.xml" }}
-      # Then run your tests!
-      - run:
-          name: Test
-          command: mvn verify
+          key: v1-dependencies-{‌{ checksum "pom.xml" }}
+      # run tests!
+      - run: mvn verify
       - store_test_results:
           path: target/surefire-reports
-      - store_artifacts:
-          path: target/pnaf-recipe-app-0.0.1-SNAPSHOT.jar
+workflows:
+  version: 2
+  workflow:
+    jobs:
+      - build
