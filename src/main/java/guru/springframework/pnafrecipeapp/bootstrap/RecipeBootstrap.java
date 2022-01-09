@@ -101,9 +101,12 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         //Yummy Guac
         Recipe guacRecipe = new Recipe();
         guacRecipe.setDescription("Perfect Guacamole");
+        guacRecipe.setServings(4);
         guacRecipe.setPrepTime(10);
-        guacRecipe.setCookTime(0);
+        guacRecipe.setCookTime(5);
         guacRecipe.setDifficulty(Difficulty.EASY);
+        guacRecipe.setSource("Simply Recipe");
+        guacRecipe.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/");
         guacRecipe.setDirections("1 Cut avocado, remove flesh: Cut the avocados in half. Remove seed. Score the inside of the avocado with a blunt knife and scoop out the flesh with a spoon" +
                 "\n" +
                 "2 Mash with a fork: Using a fork, roughly mash the avocado. (Don't overdo it! The guacamole should be a little chunky.)" +
@@ -115,7 +118,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "Chilling tomatoes hurts their flavor, so if you want to add chopped tomato to your guacamole, add it just before serving.\n" +
                 "\n" +
                 "\n" +
-                "Read more: http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvpiV9Sd");
+                "Read more: http://www.simplyrecipes.com/recipes/perfect_guacamole/");
 
         Notes guacNotes = new Notes();
         guacNotes.setRecipeNotes("For a very quick guacamole just take a 1/4 cup of salsa and mix it in with your mashed avocados.\n" +
@@ -124,7 +127,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "To extend a limited supply of avocados, add either sour cream or cottage cheese to your guacamole dip. Purists may be horrified, but so what? It tastes great.\n" +
                 "\n" +
                 "\n" +
-                "Read more: http://www.simplyrecipes.com/recipes/perfect_guacamole/#ixzz4jvoun5ws");
+                "Read more: http://www.simplyrecipes.com/recipes/perfect_guacamole/");
 
         guacRecipe.setNotes(guacNotes);
 
@@ -147,8 +150,11 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         //Yummy Tacos
         Recipe tacosRecipe = new Recipe();
         tacosRecipe.setDescription("Spicy Grilled Chicken Taco");
+        tacosRecipe.setServings(4);
         tacosRecipe.setCookTime(9);
         tacosRecipe.setPrepTime(20);
+        tacosRecipe.setSource("Simply Recipes");
+        tacosRecipe.setUrl("https://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
         tacosRecipe.setDifficulty(Difficulty.MODERATE);
 
         tacosRecipe.setDirections("1 Prepare a gas or charcoal grill for medium-high, direct heat.\n" +
@@ -162,7 +168,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "5 Assemble the tacos: Slice the chicken into strips. On each tortilla, place a small handful of arugula. Top with chicken slices, sliced avocado, radishes, tomatoes, and onion slices. Drizzle with the thinned sour cream. Serve with lime wedges.\n" +
                 "\n" +
                 "\n" +
-                "Read more: http://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/#ixzz4jvtrAnNm");
+                "Read more: http://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
 
         Notes tacoNotes = new Notes();
         tacoNotes.setRecipeNotes("We have a family motto and it is this: Everything goes better in a tortilla.\n" +
@@ -172,7 +178,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
                 "Grill the chicken, then let it rest while you warm the tortillas. Now you are ready to assemble the tacos and dig in. The whole meal comes together in about 30 minutes!\n" +
                 "\n" +
                 "\n" +
-                "Read more: http://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/#ixzz4jvu7Q0MJ");
+                "Read more: http://www.simplyrecipes.com/recipes/spicy_grilled_chicken_tacos/");
 
         tacosRecipe.setNotes(tacoNotes);
 

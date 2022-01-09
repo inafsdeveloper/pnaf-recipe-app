@@ -1,5 +1,7 @@
 package guru.springframework.pnafrecipeapp.services;
 
+import guru.springframework.pnafrecipeapp.converters.RecipeCommandToRecipe;
+import guru.springframework.pnafrecipeapp.converters.RecipeToRecipeCommand;
 import guru.springframework.pnafrecipeapp.domain.Recipe;
 import guru.springframework.pnafrecipeapp.repositories.RecipeRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,10 +23,17 @@ class RecipeServiceImplTest {
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    RecipeToRecipeCommand recipeToRecipeCommand;
+
+    @Mock
+    RecipeCommandToRecipe recipeCommandToRecipe;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository,
+                recipeToRecipeCommand, recipeCommandToRecipe);
     }
 
     @Test
@@ -54,5 +63,16 @@ class RecipeServiceImplTest {
 
         assertEquals(recipes.size(), 1);
         verify(recipeRepository, times(1)).findAll();
+    }
+
+    @Test
+    public void testDeleteById() {
+        //given
+        Long idToDelete = Long.valueOf(2L);
+
+        //when
+        recipeService.deleteById(idToDelete);
+
+        verify(recipeRepository, times(1)).deleteById(anyLong());
     }
 }
