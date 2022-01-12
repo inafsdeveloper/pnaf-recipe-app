@@ -33,6 +33,8 @@ jobs:
           command: mvn verify
       - store_test_results:
           path: target/surefire-reports
+      - store_artifacts:
+          path: target
 #  send-reports-to-codecov:
 #    docker:
 #      # replace with your preferred image
