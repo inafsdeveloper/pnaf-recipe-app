@@ -39,6 +39,7 @@ jobs:
       - store_artifacts:
           path: target
       - codecov/upload:
+          token: CD_CV_TKN
           file: target/site/jacoco/jacoco.xml
 #  send-reports-to-codecov:
 #    docker:
