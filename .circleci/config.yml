@@ -38,7 +38,7 @@ jobs:
       # replace with your preferred image
       - image: cimg/base:stable
         environment:
-          CD_CV_TKN: $CDCV_VAR
+          CD_CV_TKN: '43c3b904-26d0-4f4c-a05e-ded8c911f263'
     steps:
       - codecov/upload:
           token: CD_CV_TKN
