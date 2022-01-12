@@ -1,8 +1,9 @@
 # Use the latest 2.1 version of CircleCI pipeline process engine.
 # See: https://circleci.com/docs/2.0/configuration-reference
 version: 2.1
-#orbs:
-#  codecov: codecov/codecov@3.2.2
+orbs:
+  maven: circleci/maven@1.1
+  codecov: codecov/codecov@3.2.2
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
 jobs:
@@ -15,6 +16,8 @@ jobs:
     working_directory: ~/pnf-recipe-app
     docker:
       - image: cimg/openjdk:11.0
+        environment:
+          CD_CV_TKN: '43c3b904-26d0-4f4c-a05e-ded8c911f263'
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
@@ -35,6 +38,8 @@ jobs:
           path: target/surefire-reports
       - store_artifacts:
           path: target
+      - codecov/upload:
+          file: target/site/jacoco/jacoco.xml
 #  send-reports-to-codecov:
 #    docker:
 #      # replace with your preferred image
