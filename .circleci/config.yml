@@ -38,7 +38,9 @@ jobs:
       # replace with your preferred image
       - image: cimg/base:stable
     steps:
-      - codecov/upload
+      - codecov/upload:
+          file: /home/circleci/pnf-recipe-app
+          token: '3c3b904-26d0-4f4c-a05e-ded8c911f263'
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
