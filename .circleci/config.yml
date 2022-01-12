@@ -33,18 +33,14 @@ jobs:
           command: mvn verify
       - store_test_results:
           path: target/surefire-reports
-      - run:
-          name: "echo an env var that is part of our project"
-          command: echo $CDCV_VAR
   send-reports-to-codecov:
     docker:
       # replace with your preferred image
       - image: cimg/base:stable
         environment:
-          CD_CV_TKN: '43c3b904-26d0-4f4c-a05e-ded8c911f263'
+          CD_CV_TKN: $CDCV_VAR
     steps:
       - codecov/upload:
-          file: /home/circleci/pnf-recipe-app
           token: CD_CV_TKN
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
